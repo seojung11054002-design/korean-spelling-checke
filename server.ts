@@ -168,8 +168,42 @@ app.post("/api/check", async (req, res) => {
       throw new Error("Gemini로부터 비어있는 응답을 받았습니다.");
     }
 
-    const data = JSON.parse(resultText);
-    res.json(data);
+    let cleanedText = resultText.trim();
+    // Strip markdown code block wrappers if present (e.g. ```json ... ```)
+    if (cleanedText.startsWith("```")) {
+      cleanedText = cleanedText
+        .replace(/^```(?:json)?\n?/i, "")
+        .replace(/\n?```$/, "")
+        .trim();
+    }
+
+    try {
+      const data = JSON.parse(cleanedText);
+      
+      // Ensure expected fields exist and have correct types
+      if (typeof data.correctedText !== "string") {
+        data.correctedText = text;
+      }
+      if (!Array.isArray(data.corrections)) {
+        data.corrections = [];
+      } else {
+        // Sanitize corrections to ensure they match our interface
+        data.corrections = data.corrections.filter((c: any) => {
+          return (
+            c &&
+            typeof c.original === "string" &&
+            typeof c.corrected === "string" &&
+            typeof c.explanation === "string" &&
+            ["spacing", "spelling", "grammar", "style"].includes(c.category)
+          );
+        });
+      }
+      
+      res.json(data);
+    } catch (parseError: any) {
+      console.error("JSON Parse Error:", parseError, "Original Result Text:", resultText);
+      throw new Error("응답 데이터를 분석하는 데 실패했습니다. 올바른 형식의 JSON이 아닙니다.");
+    }
   } catch (error: any) {
     console.error("Spelling Check API Error:", error);
     res.status(500).json({
