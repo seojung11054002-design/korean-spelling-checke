@@ -601,38 +601,7 @@ export default function App() {
 
             {/* STATE 3: WELCOME PANEL (No Result) */}
             {!loading && !error && !result && (
-              <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-white">
-                <div className="bg-emerald-50 text-emerald-600 p-4 rounded-2xl mb-5 shadow-xs">
-                  <Sparkles className="w-8 h-8" />
-                </div>
-                <h3 className="text-base font-bold text-neutral-900 mb-2">한국어 맞춤법 검사기 준비 완료</h3>
-                <p className="text-xs text-neutral-500 max-w-xs mb-6 leading-relaxed">
-                  왼쪽 입력창에 맞춤법 검사를 원하는 문장을 입력하고 <strong className="text-emerald-700 font-bold">'맞춤법 검사하기'</strong> 버튼을 눌러주세요.
-                </p>
-                <div className="w-full max-w-xs bg-neutral-50 border border-neutral-100 rounded-xl p-4 text-left">
-                  <h4 className="text-[11px] font-bold text-neutral-700 mb-2.5 flex items-center gap-1">
-                    <span>💡 스마트 주요 기능</span>
-                  </h4>
-                  <ul className="text-[11px] text-neutral-500 space-y-2">
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-500 mt-0.5">•</span>
-                      <span>인공지능(Gemini) 기반의 고정밀 문맥 분석 교정</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-500 mt-0.5">•</span>
-                      <span>맞춤법, 띄어쓰기, 문법, 자연스러운 표현 및 문체 정밀 튜닝</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-500 mt-0.5">•</span>
-                      <span>직관적이고 상세한 오류 원인 설명 제공</span>
-                    </li>
-                    <li className="flex items-start gap-1.5">
-                      <span className="text-emerald-500 mt-0.5">•</span>
-                      <span>입력 내용 실시간 자동 저장 및 최근 기록 로컬 보관</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <div className="flex-1 bg-white" />
             )}
 
             {/* STATE 4: SUCCESS RESULTS */}
