@@ -1,0 +1,6 @@
+{
+  "name": "Korean Spelling Checker",
+  "description": "Google Gemini AI 기반의 실시간 한국어 맞춤법 및 띄어쓰기 검사기",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
